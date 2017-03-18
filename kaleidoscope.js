@@ -26,8 +26,11 @@ function newCanvas(userSpokes) {
   var w = canvas.width;
 
   // Clear
-  ctx.fillStyle = 'white'
-  ctx.fillRect(0, 0, w, h);
+  ctx.fillStyle = 'red'
+
+  console.log('clear')
+
+  ctx.clearRect(0, 0, w, h);
 
   // Center x, center y
   cx = w/2;
@@ -46,6 +49,8 @@ function newCanvas(userSpokes) {
 
   console.log(length)
 
+  console.log(spokes , 'spokes')
+
   for (var s = 0 ; s < spokes ; s++) {
 
     // Line at an angle of angle, starting at the center
@@ -53,9 +58,11 @@ function newCanvas(userSpokes) {
     var x = length * Math.sin(angle);
     var y = length * Math.cos(angle);
 
+    ctx.beginPath()
     ctx.moveTo(cx, cy);
     ctx.lineTo(cx + x, cy + y);
     ctx.stroke();
+    ctx.closePath();
 
     angle += wedgeAngle;
 
@@ -162,6 +169,7 @@ function drawCircle(x, y) {
   ctx.beginPath();
   ctx.arc(x, y, 1, 0, Math.PI*2)
   ctx.stroke()
+  ctx.closePath()
 
 
 }
